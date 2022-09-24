@@ -3,7 +3,7 @@ import { Keyboard} from 'react-native';
 
 import { Container, Button, 
     ButtonText, Title, SubTitle, 
-    Input, Spacer} from '../../styles';
+    Input, AddressList,AddressItem} from '../../styles';
 
 const Ride = () => {    
     const [visible, setvisible] = useState(true); 
@@ -34,15 +34,26 @@ const Ride = () => {
                 </Container>
                 <Container align="flex-end" padding={20}></Container>
             </Container>
-            <Container padding={30}>
+
+            <Container padding={30} justify="flex-start">
                 <Container height={90} justify="flex-start">
                     <Input placeholder="Embarque" />
                     <Input placeholder="Destino" />
                 </Container>
+                <Container>
+                    <AddressList 
+                        data={[1,2,3,4,5,6,7,8,9,10,11,12]}
+                        renderItem={({item, index}) => ( 
+                            <AddressItem>
+                                <SubTitle bold>IF Campinas</SubTitle>
+                                <SubTitle small>R.Heitor Lacerda Guedes,1000</SubTitle>
+                            </AddressItem>
+                        )} 
+                    />
+                </Container>
             </Container>
-            <Container></Container>
             {visible && (
-                <Container height={70} justify="flex-end">
+                <Container height={70} padding={30} justify="flex-end">
                     <Button>
                         <ButtonText> Comece a usuar </ButtonText>
                     </Button>
