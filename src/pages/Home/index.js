@@ -29,7 +29,7 @@ const Home = () => {
                 >
                     {/*AVATAR*/}
                     <TouchableOpacity>
-                        <Avatar source={{ uri: ''}} />
+                        <Avatar source={{ uri: 'https://i.pinimg.com/originals/65/71/07/6571072297e92351469e0cc39ac1500b.png'}} />
                     </TouchableOpacity>
                 </Container>
 
