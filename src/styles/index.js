@@ -1,6 +1,5 @@
 import styled from "styled-components/native";
 import theme from "./theme.json";
-import GOOGLE_MAPS_APIKEY from '.env';
 import MapView from 'react-native-maps';
 
 export const Container = styled.View`
@@ -88,10 +87,6 @@ export const Map = styled(MapView)`
   width: 100%;
   height: 100%;
   opacity: ${(props) => (props.disabled ? 0.2 : 1)};
-  query: ${{
-    key: AIzaSyCG_bL-UfXM-Hdq2saUNoRht5dezqn1xbA,
-    language: 'pt-BR'
-  }}
 `;
 
 export const Avatar = styled.Image`

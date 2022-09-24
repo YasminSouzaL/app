@@ -1,6 +1,7 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import {Container, Avatar, Map} from '../../styles';
+import {Container, Avatar, Map, Title, SubTitle, Spacer} from '../../styles';
+//import GOOGLE_MAPS_APIKEY from '.env';
 
 const Home = () => {
     return (
@@ -30,7 +31,17 @@ const Home = () => {
                         <Avatar source={{ uri: 'https://i.pinimg.com/originals/65/71/07/6571072297e92351469e0cc39ac1500b.png'}} />
                     </TouchableOpacity>
                 </Container>
-
+                <Container 
+                    justify="flex-start" 
+                    padding={30}
+                    align="flex-start" 
+                    elevation={50} 
+                    height={150}
+                >
+                    <SubTitle>Olá,MIMI</SubTitle>
+                    <Title>Pra onde você quer ir?</Title>
+                    <Spacer />    
+                </Container>
             </Container>
         </Container>
     );
