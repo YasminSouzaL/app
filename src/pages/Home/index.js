@@ -4,6 +4,9 @@ import {Container, Avatar, Map, Title, SubTitle, Spacer, Input} from '../../styl
 //import GOOGLE_MAPS_APIKEY from '.env';
 
 const Home = () => {
+
+    const tipo = 'P';
+
     return (
         <Container>
             <Map 
@@ -31,6 +34,7 @@ const Home = () => {
                         <Avatar source={{ uri: 'https://i.pinimg.com/originals/65/71/07/6571072297e92351469e0cc39ac1500b.png'}} />
                     </TouchableOpacity>
                 </Container>
+                {tipo == "P" && 
                 <Container 
                     justify="flex-start" 
                     padding={30}
@@ -43,7 +47,20 @@ const Home = () => {
                     <Title>Pra onde você quer ir?</Title>
                     <Spacer />
                     <Input placeholder="Procure um destino..."/>    
-                </Container>
+                </Container>}
+                {tipo == "M" && 
+                    <Container 
+                    justify="flex-start" 
+                    padding={30}
+                    align="flex-start" 
+                    elevation={50} 
+                    height={150}
+                    color="light"
+                    >
+                        <SubTitle>Olá,MIMI</SubTitle>
+                        <Title>Pra onde você quer ir?</Title>    
+                    </Container>
+                }
             </Container>
         </Container>
     );
