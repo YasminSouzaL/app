@@ -6,6 +6,7 @@ import {Container, Avatar, Map, Title, SubTitle, Spacer, Input} from '../../styl
 const Home = () => {
 
     const tipo = 'P';
+    const tipo2 = 'M';
 
     return (
         <Container>
