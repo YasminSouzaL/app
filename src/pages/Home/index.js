@@ -58,7 +58,7 @@ const Home = () => {
                     color="light"
                     >
                         <SubTitle>Olá,MIMI</SubTitle>
-                        <Title>Pra onde você quer ir?</Title>    
+                        <Title>Nenhum corrida encontrada.</Title>    
                     </Container>
                 }
             </Container>
