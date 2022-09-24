@@ -24,9 +24,7 @@ const Home = () => {
                 <Container 
                     height={100} 
                     justify="flex-start"
-                    align="flex-start"
-                    color="info"
-                >
+                    align="flex-start">
                     {/*AVATAR*/}
                     <TouchableOpacity>
                         <Avatar source={{ uri: 'https://i.pinimg.com/originals/65/71/07/6571072297e92351469e0cc39ac1500b.png'}} />
