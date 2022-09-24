@@ -35,7 +35,6 @@ const Home = () => {
                         <Avatar source={{ uri: 'https://i.pinimg.com/originals/65/71/07/6571072297e92351469e0cc39ac1500b.png'}} />
                     </TouchableOpacity>
                 </Container>
-                {tipo == "P" && 
                 <Container 
                     justify="flex-start" 
                     padding={30}
@@ -44,24 +43,23 @@ const Home = () => {
                     height={150}
                     color="light"
                 >
-                    <SubTitle>Olá,MIMI</SubTitle>
-                    <Title>Pra onde você quer ir?</Title>
-                    <Spacer />
-                    <Input placeholder="Procure um destino..."/>    
-                </Container>}
-                {tipo == "M" && 
-                    <Container 
-                    justify="flex-start" 
-                    padding={30}
-                    align="flex-start" 
-                    elevation={50} 
-                    height={150}
-                    color="light"
-                    >
-                        <SubTitle>Olá,MIMI</SubTitle>
-                        <Title>Nenhum corrida encontrada.</Title>    
-                    </Container>
-                }
+                    {/* PASSAGEIRO SEM CORRIDA */}
+                    {tipo == "P" && (
+                        <Container>
+                            <SubTitle>Olá,MIMI</SubTitle>
+                            <Title>Pra onde você quer ir?</Title>
+                            <Spacer />
+                            <Input placeholder="Procure um destino..."/> 
+                        </Container>
+                    )}
+                    {/* MOTORISTA SEM CORRIDA */}   
+                    {tipo == "M" &&( 
+                        <Container>
+                            <SubTitle>Olá,MIMI</SubTitle>
+                            <Title>Nenhum corrida encontrada.</Title>    
+                        </Container>
+                    )}
+                </Container>
             </Container>
         </Container>
     );
