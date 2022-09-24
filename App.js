@@ -8,6 +8,5 @@ import Type from './src/pages/Steps/type';
 export default function App() {
   return (
     <Payment />
-    
   );
 }
