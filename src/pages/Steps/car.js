@@ -1,7 +1,9 @@
-import React from 'react';
-import { Image, Text } from 'react-native';
+import React, {useState} from 'react';
+import { Keyboard} from 'react-native';
 
-import { Container, Button, ButtonText, Title, SubTitle} from '../../styles';
+import { Container, Button, 
+    ButtonText, Title, SubTitle, 
+    Input, Spacer} from '../../styles';
 
 const Car = () => {
     return(
@@ -10,8 +12,15 @@ const Car = () => {
                 <Title>Cadastre seu veículo</Title>
                 <SubTitle>Preencha os campos abaixo.</SubTitle>
             </Container>
-            <Container>
-
+            <Container justify="flex-start">
+                <Spacer height={40} />
+                <Input placeholder="Placa do veículo" />
+                <Spacer height={20} />
+                <Input placeholder="Marca do veículo" />
+                <Spacer height={20} />
+                <Input placeholder="Modelo do veículo" />
+                <Spacer height={20} />
+                <Input placeholder="Cor do veículo" />
             </Container>
             <Container height={70} justify="flex-end">
                 <Button>
