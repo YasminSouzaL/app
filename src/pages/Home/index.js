@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import {Container, Avatar, Map, Title, SubTitle, Spacer} from '../../styles';
+import {Container, Avatar, Map, Title, SubTitle, Spacer, Input} from '../../styles';
 //import GOOGLE_MAPS_APIKEY from '.env';
 
 const Home = () => {
@@ -37,10 +37,12 @@ const Home = () => {
                     align="flex-start" 
                     elevation={50} 
                     height={150}
+                    color="light"
                 >
                     <SubTitle>Olá,MIMI</SubTitle>
                     <Title>Pra onde você quer ir?</Title>
-                    <Spacer />    
+                    <Spacer />
+                    <Input placeholder="Procure um destino..."/>    
                 </Container>
             </Container>
         </Container>
