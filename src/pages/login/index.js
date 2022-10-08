@@ -10,9 +10,9 @@ const Login = () => {
         <Container color="info50" justify="flex-end">
             <Container
                justify="space-around"
-               padding={60}
+               padding={30}
                position="absolute"
-               height={300}
+               height={400}
                top={0}
                zIndex={9}>
                 <Image source={logo} />
