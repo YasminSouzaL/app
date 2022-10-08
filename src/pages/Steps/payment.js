@@ -3,7 +3,7 @@ import { Keyboard} from 'react-native';
 
 import { Container, Button, 
     ButtonText, Title, SubTitle, 
-    Input, Spacer} from '../styles';
+    Input, Spacer} from '../../styles';
 
 const Passenger = () => {    
     const [visible, setvisible] = useState(true); 
