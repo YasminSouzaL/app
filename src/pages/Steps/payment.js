@@ -1,13 +1,12 @@
-import React,{useEffect,useState} from 'react';
-import { Keyboard } from 'react-native';
-import { CreditCardInput} from "react-native-credit-card-input";
+import React, {useState,useEffect} from 'react';
+import { Keyboard} from 'react-native';
 
-import { Container, Button, ButtonText,
-     Title, SubTitle, Spacer,} from '../../styles';
+import { Container, Button, 
+    ButtonText, Title, SubTitle, 
+    Input, Spacer} from '../styles';
 
-
-const Payment = () => {
-    const [visible, setvisible] = useState(true);
+const Passenger = () => {    
+    const [visible, setvisible] = useState(true); 
 
     useEffect(() => {
         const keyboardDidShowListener = Keyboard.addListener(
@@ -25,19 +24,24 @@ const Payment = () => {
     },[]);
 
     return(
-        <Container padding={30} justify="flex-start">
+        <Container padding={40} justify="flex-start">
             <Container align="flex-start" height={80} >
-                <Title>Escolha como pagar?</Title>
-                <SubTitle>Preencha os dados do cartão de crédito.</SubTitle>
+                <Title>Cadastre</Title>
+                <SubTitle>Preencha os campos abaixo.</SubTitle>
             </Container>
-            <Container>
-                <Spacer height={50} />
-                <CreditCardInput requiresName />
+            <Container justify="flex-start">
+                <Spacer height={40} />
+                <Input placeholder="Nome" />
+                <Spacer height={20} />
+                <Input placeholder="Curso" />
+                <Spacer height={20} />
+                <Input placeholder="email" />
+                <Spacer height={20} />
             </Container>
             {visible && (
                 <Container height={70} justify="flex-end">
                     <Button>
-                        <ButtonText>Comece a usar</ButtonText>
+                        <ButtonText>Começar a usar</ButtonText>
                     </Button>
                 </Container>
             )}
@@ -45,4 +49,4 @@ const Payment = () => {
     );
 }
 
-export default Payment;
+export default Passenger;
