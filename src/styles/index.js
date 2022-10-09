@@ -9,7 +9,7 @@ export const Container = styled.View`
   flex-direction: ${(props) => (props.row ? 'row' : 'column')};
   justify-content: ${(props) => props.justify || 'center'};
   padding: ${(props) => props.padding || 0}px;
-  width: 100%
+  width: 100%;
   align-items: ${(props) => props.aling || 'center'};
   max-width: ${(props) => props.width || '100%'};
   max-height: ${(props) => props.height ? props.height + 'px' : 'auto'};
@@ -27,8 +27,8 @@ export const Button = styled.TouchableOpacity`
 `;
 
 export const ButtonText = styled.Text`
-  text-aling: center;
-  color: ${(props) => (props.color ? theme.colors[props.color] : '#000')}
+  text-align: center;
+  color: ${(props) => (props.color ? theme.colors[props.color] : '#000')};
 `;
 
 export const Title = styled.Text`
@@ -68,7 +68,7 @@ export const Input = styled.TextInput`
 
 export const Spacer = styled.View`
   width: ${(props) => props.width || '100%'};
-  heigth: ${(props) => props.height || 10}px;
+  height: ${(props) => props.height || 10}px;
 `;
 
 export const AddressList = styled.FlatList`
