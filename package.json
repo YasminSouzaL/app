@@ -21,7 +21,8 @@
     "react-native-dotenv": "^3.3.1",
     "react-native-maps": "^1.0.1",
     "react-native-pulse": "^1.0.7",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "yet": "^0.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
