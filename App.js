@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import Login from './src/pages/Login/index';
+import Login from './src/pages/login/index';
 import Car from './src/pages/Steps/car';
 import Payment from './src/pages/Steps/payment';
 import Type from './src/pages/Steps/type';

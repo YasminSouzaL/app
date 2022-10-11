@@ -67,22 +67,25 @@ const Login = () => {
                justify="space-around"
                padding={30}
                position="absolute"
-               height={400}
+               height={540}
                top={0}
                zIndex={9}>
                     <Image source={logo} />
-
-                    <TextInput
-                        placeholder='Email'
-                        onChangeText={text => setEmail(text)}
-                        value={email}
-                    />
-                    <TextInput
-                        placeholder='Senha'
-                        onChangeText={text => setPassword(text)}
-                        value={password}
-                        secureTextEntry
-                    />
+                    <View style={styles.inputContainer}>
+                        <TextInput 
+                            placeholder='Email'
+                            onChangeText={text => setEmail(text)}
+                            value={email}
+                            style={styles.input}
+                        />
+                        <TextInput
+                            placeholder='Senha'
+                            onChangeText={text => setPassword(text)}
+                            value={password}
+                            secureTextEntry
+                            style={styles.input}
+                        />
+                    </View>
 
                     <Button onPress={() => setIsDriver(!isDriver)}>
                         <ButtonText>Tipo de Usuário: {isDriver ? 'Motorista' : 'Passageiro'}</ButtonText>
@@ -111,6 +114,16 @@ const styles = StyleSheet.create({
     },
     label: {
         margin: 8,
+    },
+    inputContainer: {
+        width: '80%'
+    },
+    input:{
+        backgroundColor: 'white',
+        paddingHorizontal: 15,
+        paddingVertical: 10,
+        borderRadius: 10,
+        marginTop: 5,
     },
 });
 
