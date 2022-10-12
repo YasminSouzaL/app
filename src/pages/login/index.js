@@ -7,7 +7,7 @@ import { setDoc, doc } from 'firebase/firestore';
 import { Button, ButtonText, Container } from '../../styles';
 
 import logo from '../../../assets/logo.png';
-import fundo from '../../../assets/fundo_tela.jpg'
+import fundo from '../../../assets/fundo_tela.jpg';
 import { auth, db } from '../../../firebase';
 
 const Login = () => {
