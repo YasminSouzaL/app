@@ -8,6 +8,7 @@ import Car from './src/pages/Steps/car';
 import Payment from './src/pages/Steps/payment';
 import Type from './src/pages/Steps/type';
 import Home from './src/pages/Home';
+import Tabel from './src/pages/tabel/tabel';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -16,7 +17,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Type" component={Type} />
+        <Stack.Screen name="Tabel" component={Tabel} />
       </Stack.Navigator>
     </NavigationContainer>
   );

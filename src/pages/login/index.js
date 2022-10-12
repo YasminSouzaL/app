@@ -19,7 +19,7 @@ const Login = () => {
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
-            if (user) navigator.navigate('Type');
+            if (user) navigator.navigate('Tabel');
         });
 
         return unsubscribe;
