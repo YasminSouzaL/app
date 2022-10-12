@@ -1,12 +1,38 @@
-import React, {useState,useEffect} from 'react';
-import { Keyboard} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Keyboard } from 'react-native';
+import { setDoc, doc } from 'firebase/firestore';
 
 import { Container, Button, 
     ButtonText, Title, SubTitle, 
     Input, Spacer} from '../../styles';
 
+import {auth, db} from '../../../firebase';
+
 const Car = () => {    
-    const [visible, setvisible] = useState(true); 
+    const [visible, setvisible] = useState(true);
+
+    const [car, setCar] = useState({
+        driver: auth.currentUser.uid,
+        model: '',
+        color: '',
+        plate: '',
+        seats: '',
+    })
+
+    const handleNewCar = () => {
+        setDoc(doc(db, "cars", car.plate), {
+            driver: auth.currentUser.uid,
+            model: car.model,
+            color: car.color,
+            seats: car.seats,
+        })
+        .then(() => {
+            console.log("Document successfully written!");
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });
+    }
 
     useEffect(() => {
         const keyboardDidShowListener = Keyboard.addListener(
@@ -38,10 +64,14 @@ const Car = () => {
                 <Input placeholder="Modelo do veículo" />
                 <Spacer height={20} />
                 <Input placeholder="Cor do veículo" />
+                <Spacer height={20} />
+                <Input placeholder="Quantidade de lugares" />
             </Container>
             {visible && (
                 <Container height={70} justify="flex-end">
-                    <Button>
+                    <Button
+                        
+                    >
                         <ButtonText>Começar a usar</ButtonText>
                     </Button>
                 </Container>
