@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-nativ
 import { Picker } from '@react-native-picker/picker';
 import { signOut } from 'firebase/auth';
 import { setDoc, doc, getDoc } from 'firebase/firestore';
-
+import card from './card';
 import { auth, db } from '../../../firebase';
 import DT from '../../components/DateTimePicker';
 
@@ -29,6 +29,7 @@ const HomeScreen = () => {
         setDoc(doc(db, 'travels', travel.driverId), travel)
         .then(() => {
             console.log('Document successfully written!');
+            navigation.navigate('card')
         })
         .catch((error) => {
             console.error('Error writing document: ', error);
@@ -50,12 +51,12 @@ const HomeScreen = () => {
                 <Text style={styles.textContainer}>IF - Terminal durante a semana:</Text>                
             </View>
             <View style={styles.inputContainer}>
-                {/* <DT
+                <DT
                     datetime={travel.datetime}
                     changeDate={
                         (datetime) => setTravel({...travel, datetime: datetime})
                     }
-                /> */}
+                />
                 <TextInput
                     style={styles.input}
                     placeholder="Datetime"
