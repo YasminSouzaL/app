@@ -1,7 +1,7 @@
 import React from "react";
 import { View,Text } from "react-native";
 
-const card = () =>{
+const Card = () =>{
     return (
         <View>
             <Text>RegisterScreen</Text>
@@ -9,4 +9,4 @@ const card = () =>{
     )
 }
 
-export default card;
+export default Card;
