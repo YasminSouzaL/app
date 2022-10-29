@@ -4,12 +4,11 @@ import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-nativ
 import { Picker } from '@react-native-picker/picker';
 import { signOut } from 'firebase/auth';
 import { setDoc, doc, getDoc } from 'firebase/firestore';
-import card from './card';
 import { auth, db } from '../../../firebase';
-import DT from '../../components/DateTimePicker';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const HomeScreen = () => {
-    const navigation = useNavigation()
+    const navigation = useNavigation();
     
     const cars = [
         {plate: 'ABC-1234', model: 'Gol', color: 'Branco', seats: 4},
@@ -18,18 +17,31 @@ const HomeScreen = () => {
 
     const [travel, setTravel] = React.useState({
         driverId: auth.currentUser.uid,
-        datetime: new Date(1598051730000),
+        datetime: new Date(),
         destination: '',
         origin: '',
         carPlate: '',
         passengers: [],
     })
 
+    const [showDate, setShowDate] = React.useState(false);
+    const [showTime, setShowTime] = React.useState(false);
+
+    const onChangeDate = (event, date) => {
+        setShowDate(!showDate);
+        setTravel({...travel, datetime: date});
+    };
+    
+    const onChangeTime = (event, time) => {
+        setShowTime(!showTime);
+        setTravel({...travel, datetime: time});
+    };    
+
     const newTravel = () => {
         setDoc(doc(db, 'travels', travel.driverId), travel)
         .then(() => {
             console.log('Document successfully written!');
-            navigation.navigate('card')
+            navigation.navigate('Card')
         })
         .catch((error) => {
             console.error('Error writing document: ', error);
@@ -51,18 +63,28 @@ const HomeScreen = () => {
                 <Text style={styles.textContainer}>IF - Terminal durante a semana:</Text>                
             </View>
             <View style={styles.inputContainer}>
-                <DT
-                    datetime={travel.datetime}
-                    changeDate={
-                        (datetime) => setTravel({...travel, datetime: datetime})
-                    }
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Datetime"
+                <TouchableOpacity style={styles.button} onPress={setShowDate}>
+                    <Text style={styles.buttonText}>Alterar a data</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={setShowTime}>
+                    <Text style={styles.buttonText}>Alterar o horário</Text>
+                </TouchableOpacity>
+
+                {showDate && (<DateTimePicker
+                    testID="dateTimePicker"
                     value={travel.datetime}
-                    onChangeText={(datetime) => setTravel({...travel, datetime: new Date(datetime)})}
-                />
+                    mode='date'
+                    is24Hour={true}
+                    onChange={onChangeDate}
+                />)}
+                {showTime && (<DateTimePicker
+                    testID="dateTimePicker"
+                    value={travel.datetime}
+                    mode='time'
+                    is24Hour={true}
+                    onChange={onChangeTime}
+                />)}
+
                 <TextInput
                     style={styles.input}
                     placeholder='Origem'
