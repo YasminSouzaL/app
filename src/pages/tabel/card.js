@@ -1,31 +1,17 @@
 import React,{useState,useEffect} from "react";
 import { View,Text,StyleSheet,FlatList, TouchableOpacity } from "react-native";
 import { auth, db } from '../../../firebase';
-import { collection, query, where, onSnapshot } from "firebase/firestore";
-import { doc } from "firebase/firestore";
+import { collection,onSnapshot,querySnapshot} from "firebase/firestore";
 
 const Card = () =>{
     const [table, setTable] = useState([]); 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
-    const unsub = onSnapshot(doc(db, "travels"), (doc) => {
-        console.log("Current data: ", doc.data(
-            {driverId: auth.currentUser.uid}
-        ));
-
+    console.log(querySnapshot);
+    const unsub = onSnapshot(collection(db, "travels"), (querySnapshot) => {
+        console.log("Current data: ", querySnapshot.data());
     });
-    useEffect(() => {
-        auth.collection('travels').onSnapshot((query)=>{
-            const list = []
-            query.forEach((doc)=>{
-                list.push({...doc.data(), id: doc.id})
-            })
-            setTable(list)
-            setLoading(false)
-        })    
-    }, []) 
-
+    
     return (
         <View style={styles.container}> 
             <Text>CardScreen</Text>
