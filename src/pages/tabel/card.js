@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from "react";
 import { View,Text,StyleSheet,FlatList, TouchableOpacity } from "react-native";
-import { auth, db } from '../../../firebase';
-import { collection,onSnapshot,querySnapshot} from "firebase/firestore";
+import { db } from '../../../firebase';
+import { collection, onSnapshot, query } from "firebase/firestore";
 
 const Card = () =>{
     const [table, setTable] = useState([]); 
@@ -9,19 +9,26 @@ const Card = () =>{
     const [error, setError] = useState(null);
 
     useEffect(() => {  
-        const unsub = onSnapshot(collection(db, "travels"), (querySnapshot) => {
-            console.log("Current data: ", querySnapshot.data());
-            setTable(querySnapshot.data());
+        const q = query(collection(db, "travels"));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            const table = [];
+            querySnapshot.forEach((doc) => {
+                table.push({...doc.data(), id: doc.id});
+            });
+            setTable(table);
+            setLoading(false);
+        }, (error) => {
+            setError(error);
             setLoading(false);
         });
-        return () => unsub();
+        return () => unsubscribe();
     }, []); 
         
     return (
         <View style={styles.container}> 
             <Text>CardScreen</Text>
             <FlatList 
-                data={unsub()}
+                data={ table }
                 renderItem={({item})=>(
                     <TouchableOpacity style={styles.item}>
                         <Text>{item.driverId}</Text>
