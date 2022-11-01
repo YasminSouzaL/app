@@ -7,16 +7,21 @@ const Card = () =>{
     const [table, setTable] = useState([]); 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    console.log(querySnapshot);
-    const unsub = onSnapshot(collection(db, "travels"), (querySnapshot) => {
-        console.log("Current data: ", querySnapshot.data());
-    });
-    
+
+    useEffect(() => {  
+        const unsub = onSnapshot(collection(db, "travels"), (querySnapshot) => {
+            console.log("Current data: ", querySnapshot.data());
+            setTable(querySnapshot.data());
+            setLoading(false);
+        });
+        return () => unsub();
+    }, []); 
+        
     return (
         <View style={styles.container}> 
             <Text>CardScreen</Text>
             <FlatList 
-                data={table}
+                data={unsub()}
                 renderItem={({item})=>(
                     <TouchableOpacity style={styles.item}>
                         <Text>{item.driverId}</Text>
