@@ -3,7 +3,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { signOut } from 'firebase/auth';
-import { setDoc, doc, getDoc } from 'firebase/firestore';
+import { collection, addDoc } from 'firebase/firestore';
 import { auth, db } from '../../../firebase';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
@@ -38,7 +38,7 @@ const HomeScreen = () => {
     };    
 
     const newTravel = () => {
-        setDoc(doc(db, 'travels', travel.driverId), travel)
+        addDoc(collection(db, 'travels'), travel)
         .then(() => {
             console.log('Document successfully written!');
             navigation.navigate('Card')
