@@ -27,18 +27,14 @@ const Card = () =>{
     return (
         <View style={styles.container}> 
             <Text>CardScreen</Text>
-            <FlatList 
-                data={ table }
-                renderItem={({item})=>(
-                    <TouchableOpacity style={styles.item}>
-                        <Text>{item.driverId}</Text>
-                        <Text>{item.datetime}</Text>
-                        <Text>{item.destination}</Text>
-                        <Text>{item.origin}</Text>  
-                        <Text>{item.carPlate}</Text>
-                        <Text>{item.passengers}</Text>
-                    </TouchableOpacity> 
+            <FlatList
+                data={table}
+                renderItem={({item}) => (
+                    <TouchableOpacity>
+                        <Text>{item.name}</Text>
+                    </TouchableOpacity>
                 )}
+                keyExtractor={item => item.id}
             />
             <TouchableOpacity style={styles.button}>
                 <Text style={styles.iconButton}>+</Text>
