@@ -31,7 +31,17 @@ const Card = () =>{
                     data={table}
                     renderItem={({item}) => (
                         <TouchableOpacity>
-                            {/* <Text>{item.datetime}</Text> NÃO FUNCIONAR!!!!!!!!!!*/}
+                            <Text>-------------------</Text>
+                            <Text>Data e Hora da viagem</Text>
+                            <Text>
+                                {item.datetime.toDate().getDate()}/
+                                {item.datetime.toDate().getMonth()}/
+                                {item.datetime.toDate().getFullYear()}
+                                {" "}
+                                {item.datetime.toDate().getHours()}:
+                                {item.datetime.toDate().getMinutes()}
+                            </Text>
+                            <Text>-------------------</Text>
                             <Text></Text>
                             <Text>Placa do Carro:{item.carPlate}</Text>
                             <Text>Origem:{item.origin}</Text>
