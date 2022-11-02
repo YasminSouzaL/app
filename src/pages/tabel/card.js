@@ -30,10 +30,10 @@ const Card = () =>{
                 <FlatList 
                     data={table}
                     renderItem={({item}) => (
-                        <TouchableOpacity>
+                        <TouchableOpacity style={styles.card}>
                             <Text>-------------------</Text>
-                            <Text>Data e Hora da viagem</Text>
-                            <Text>
+                            <Text style={styles.text}>Data e Hora da viagem</Text>
+                            <Text style={styles.text}>
                                 {item.datetime.toDate().getDate()}/
                                 {item.datetime.toDate().getMonth()}/
                                 {item.datetime.toDate().getFullYear()}
@@ -43,9 +43,9 @@ const Card = () =>{
                             </Text>
                             <Text>-------------------</Text>
                             <Text></Text>
-                            <Text>Placa do Carro:{item.carPlate}</Text>
-                            <Text>Origem:{item.origin}</Text>
-                            <Text>Destino:{item.destination}</Text>
+                            <Text style={styles.text}>Placa do Carro:{item.carPlate}</Text>
+                            <Text style={styles.text}>Origem:{item.origin}</Text>
+                            <Text style={styles.text}>Destino:{item.destination}</Text>
                             <Text></Text>
                         </TouchableOpacity>
                     )}
@@ -79,5 +79,22 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         JustifyContent: 'center',
     },
+    card: {
+        width: 220,
+        height: 180,
+        backgroundColor: "#87e75f",
+        borderRadius: 30,
+        alignItems: 'center',
+        justifyContent: 'center',
+        margin: 10,
+        borderWidth: 4,
+    },
+    text: {
+        color: "#000000",
+        fontSize: 16,
+        fontWeight: 'bold',
+        fontFamily: 'sans-serif',
+    }
+
 })
 export default Card;
