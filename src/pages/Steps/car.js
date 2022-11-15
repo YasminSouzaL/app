@@ -25,6 +25,7 @@ const Car = () => {
             model: car.model,
             color: car.color,
             seats: car.seats,
+            color: car.color,
         })
         .then(() => {
             console.log("Document successfully written!");
@@ -57,22 +58,42 @@ const Car = () => {
             </Container>
             <Container justify="flex-start">
                 <Spacer height={40} />
-                <Input placeholder="Placa do veículo" />
+                <Input 
+                    placeholder="Placa do veículo"
+                    value={car.plate}
+                    onChangeText={(text) => setCar({...car, plate: text})} 
+                />
                 <Spacer height={20} />
-                <Input placeholder="Marca do veículo" />
+                <Input 
+                    placeholder="Marca do veículo"
+                    value={car.model}
+                    onChangeText={(text) => setCar({...car, model: text})} 
+                />
                 <Spacer height={20} />
-                <Input placeholder="Modelo do veículo" />
+                <Input 
+                    placeholder="Modelo do veículo"
+                    value={car.color}
+                    onChangeText={(text) => setCar({...car, color: text})} 
+                />
                 <Spacer height={20} />
-                <Input placeholder="Cor do veículo" />
+                <Input 
+                    placeholder="Cor do veículo"
+                    value={car.color}
+                    onChangeText={(text) => setCar({...car, color: text})}
+                />
                 <Spacer height={20} />
-                <Input placeholder="Quantidade de lugares" />
+                <Input 
+                    placeholder="Quantidade de lugares" 
+                    value={car.seats}
+                    onChangeText={(text) => setCar({...car, seats: text})} 
+                />
             </Container>
             {visible && (
                 <Container height={70} justify="flex-end">
                     <Button
-                        
+                        onPress={handleNewCar} 
                     >
-                        <ButtonText>Começar a usar</ButtonText>
+                        <ButtonText>Cadastrar</ButtonText>
                     </Button>
                 </Container>
             )}
