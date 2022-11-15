@@ -1,13 +1,15 @@
 import React from "react";
-import { View,Text, Button,StyleSheet, TouchableOpacity} from "react-native";
+import { View,Text, Button,StyleSheet, TouchableOpacity, Image} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-
+import logo from "../../../assets/logo.png";
+/*Fazer um home com Icons */
 const Home = () =>{
     const navigator = useNavigation();
 
     return (
         <View style={styles.container}>
+            <Image style={styles.image} source={logo} />
             <Text style={styles.text}>Home</Text>
             <TouchableOpacity style={styles.button}>
                 <Text 
@@ -45,6 +47,12 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 20,
         fontWeight: 'bold',
+        paddingBottom: 20,
+    },
+    image: {
+        width: 250,
+        height: 100,
+        marginBottom: 100,
     },
     button: {
         backgroundColor: '#49efb5',
@@ -56,6 +64,11 @@ const styles = StyleSheet.create({
     buttonText: {
         color: '#fff',
         fontSize: 16,
+        fontWeight: 'bold',
+    },
+    TituloText: {
+        color: '#000',
+        fontSize: 22,
         fontWeight: 'bold',
     }
 });

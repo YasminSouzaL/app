@@ -1,26 +1,24 @@
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
+import React, { useEffect} from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { signOut } from 'firebase/auth';
 import { collection, addDoc } from 'firebase/firestore';
 import { auth, db } from '../../../firebase';
+import {addListener} from '@react-native-community/netinfo';
 import DateTimePicker from '@react-native-community/datetimepicker';
+/* Usar a placa salva no banco*/
 
 const HomeScreen = () => {
     const navigation = useNavigation();
-    
-    const cars = [
-        {plate: 'ABC-1234', model: 'Gol', color: 'Branco', seats: 4},
-        {plate: 'ABC-1235', model: 'Celta', color: 'Preto', seats: 4},
-    ]
+
 
     const [travel, setTravel] = React.useState({
         driverId: auth.currentUser.uid,
         datetime: new Date(),
         destination: '',
         origin: '',
-        carPlate: '',
+        plate: '',
         passengers: [],
     })
 
@@ -47,6 +45,12 @@ const HomeScreen = () => {
             console.error('Error writing document: ', error);
         });
     }
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            setTravel({...travel, plate: auth.currentUser.plate});
+        });
+        return unsubscribe;
+    }, [navigation]);
 
     const handleSingOut = () => {
         signOut(auth).then(() => {
@@ -58,6 +62,7 @@ const HomeScreen = () => {
 
     return (
         <View style={styles.container}>
+            <Text>Crie sua rota</Text>
             <Text>Email: {auth.currentUser?.email}</Text>
             <View>
                 <Text style={styles.textContainer}>IF - Terminal durante a semana:</Text>                
@@ -99,14 +104,15 @@ const HomeScreen = () => {
                 />
                 
                 <Picker
-                    selectedValue={travel.carPlate}
-                    onValueChange={(itemValue, itemIndex) => setTravel({...travel, carPlate: itemValue})
-                }>
-                    {
-                        cars.map(car => (
-                            <Picker.Item label={car.plate} value={car.plate} key={car.plate}/>
-                        ))
-                    }
+                    unsubscribe={navigation.addListener('focus', () => {
+                        setTravel({...travel, plate: auth.currentUser.plate});
+                    })}
+                    selectedValue={travel.plate}
+                    onValueChange={(itemValue, itemIndex) =>
+                        setTravel({...travel, plate: itemValue})
+                    }>
+                    <Picker.Item label="Placa" value="" />
+                  
                 </Picker>
             </View>
 

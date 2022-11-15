@@ -7,10 +7,11 @@ import { Container, Button,
     Input, Spacer} from '../../styles';
 
 import {auth, db} from '../../../firebase';
+import { useNavigation } from '@react-navigation/native';
 
 const Car = () => {    
     const [visible, setvisible] = useState(true);
-
+    const navigation = useNavigation();
     const [car, setCar] = useState({
         driver: auth.currentUser.uid,
         model: '',
@@ -31,7 +32,7 @@ const Car = () => {
         })
         .then(() => {
             console.log("Document successfully written!");
-            navigator.navigate('Tabel');
+            navigation.navigate('Tabel');
         })
         .catch((error) => {
             console.error("Error writing document: ", error);
