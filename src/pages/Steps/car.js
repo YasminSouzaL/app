@@ -29,6 +29,7 @@ const Car = () => {
             seats: car.seats,
             color: car.color,
             marc:  car.marc,
+            plate: car.plate,
         })
         .then(() => {
             console.log("Document successfully written!");

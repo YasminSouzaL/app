@@ -5,7 +5,6 @@ import { Picker } from '@react-native-picker/picker';
 import { signOut } from 'firebase/auth';
 import { collection, addDoc } from 'firebase/firestore';
 import { auth, db } from '../../../firebase';
-import {addListener} from '@react-native-community/netinfo';
 import DateTimePicker from '@react-native-community/datetimepicker';
 /* Usar a placa salva no banco*/
 
@@ -18,7 +17,6 @@ const HomeScreen = () => {
         datetime: new Date(),
         destination: '',
         origin: '',
-        plate: '',
         passengers: [],
     })
 
@@ -45,12 +43,11 @@ const HomeScreen = () => {
             console.error('Error writing document: ', error);
         });
     }
+
     useEffect(() => {
-        const unsubscribe = navigation.addListener('focus', () => {
-            setTravel({...travel, plate: auth.currentUser.plate});
-        });
-        return unsubscribe;
-    }, [navigation]);
+        carPlate = auth.currentCars.plate;
+    },[]);
+
 
     const handleSingOut = () => {
         signOut(auth).then(() => {
@@ -103,18 +100,29 @@ const HomeScreen = () => {
                     onChangeText={text => setTravel({...travel, destination: text})}
                 />
                 
-                <Picker
-                    unsubscribe={navigation.addListener('focus', () => {
-                        setTravel({...travel, plate: auth.currentUser.plate});
-                    })}
-                    selectedValue={travel.plate}
-                    onValueChange={(itemValue, itemIndex) =>
-                        setTravel({...travel, plate: itemValue})
-                    }>
-                    <Picker.Item label="Placa" value="" />
-                  
-                </Picker>
+                
             </View>
+            {/*
+                <Picker
+                selectedValue={travel.carPlate}
+                onValueChange={(itemValue, itemIndex) => setTravel({...travel, carPlate: itemValue})
+                }>
+                    {
+                        cars.map(car => (
+                            <Picker.Item label={car.plate} value={car.plate} key={car.plate}/>
+                        ))
+                    }
+            </Picker>
+            */}
+            <Picker
+                selectedValue={travel.carPlate}
+                onValueChange={(itemValue, itemIndex) => setTravel({...travel, carPlate: itemValue})
+            }>
+                <Picker.Item label="Placa" value="Placa" />
+                <Picker.Item label="Placa" value="Placa" />
+                <Picker.Item label="Placa" value="Placa" />
+                <Picker.Item label="Placa" value="Placa" />
+            </Picker>
 
             <TouchableOpacity
                 style={styles.button}
