@@ -16,6 +16,7 @@ const Car = () => {
         model: '',
         color: '',
         plate: '',
+        marc:  '',
         seats: '',
     })
 
@@ -26,9 +27,11 @@ const Car = () => {
             color: car.color,
             seats: car.seats,
             color: car.color,
+            marc:  car.marc,
         })
         .then(() => {
             console.log("Document successfully written!");
+            navigator.navigate('Tabel');
         })
         .catch((error) => {
             console.error("Error writing document: ", error);
@@ -66,14 +69,14 @@ const Car = () => {
                 <Spacer height={20} />
                 <Input 
                     placeholder="Marca do veículo"
-                    value={car.model}
-                    onChangeText={(text) => setCar({...car, model: text})} 
+                    value={car.marc}
+                    onChangeText={(text) => setCar({...car, marc: text})} 
                 />
                 <Spacer height={20} />
                 <Input 
                     placeholder="Modelo do veículo"
-                    value={car.color}
-                    onChangeText={(text) => setCar({...car, color: text})} 
+                    value={car.model}
+                    onChangeText={(text) => setCar({...car, model: text})} 
                 />
                 <Spacer height={20} />
                 <Input 

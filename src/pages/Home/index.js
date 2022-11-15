@@ -22,7 +22,7 @@ const Home = () =>{
                     style={styles.buttonText}
                     onPress={() => navigator.navigate('Payment')}
                 >
-                    Register!
+                    Registro do Passageiro!
                 </Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}>

@@ -4,8 +4,10 @@ import { useNavigation } from "@react-navigation/native";
 import { Container, Button, 
     ButtonText, Title, SubTitle, 
     Input, Spacer} from '../../styles';
+
 import { auth,db } from '../../../firebase';
 import { collection, addDoc } from 'firebase/firestore';
+//import { setDoc, doc } from 'firebase/firestore';
 
 const Passenger = () => {    
     const [visible, setvisible] = useState(true); 
@@ -13,6 +15,30 @@ const Passenger = () => {
     const [curso, setCurso] = useState('');
 
     const navigator = useNavigation();   
+
+    const [passeger, setPasseger] = useState({
+        passeger: auth.currentUser.uid,
+        name: '',
+        curso: '',
+        telefone: '',
+    })
+
+    const newPasseger = () => {
+        addDoc(collection(db, "passeger"), {
+            passeger: auth.currentUser.uid,
+            name: passeger.name,
+            curso: passeger.curso,
+            telefone: passeger.telefone,
+        })
+        .then(() => {
+            console.log("Document successfully written!");
+            navigator.navigate('Home');
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });
+    }
+
     useEffect(() => {
         /*const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) navigator.navigate('Home');
@@ -31,28 +57,6 @@ const Passenger = () => {
         };
     },[]);
 
-    const [passeger, setPasseger] = useState({
-        passeger: auth.currentUser.uid,
-        name: '',
-        curso: '',
-        telefone: '',
-    })
-
-    const newPasseger = () => {
-        addDoc(collection(db, "passeger"), {
-            passeger: auth.currentUser.uid,
-            name: passeger.name,
-            curso: passeger.curso,
-            telefone: passeger.telefone,
-        })
-        .then(() => {
-            console.log("Document successfully written!");
-        })
-        .catch((error) => {
-            console.error("Error writing document: ", error);
-        });
-    }
-
 
     
     return(
@@ -62,24 +66,24 @@ const Passenger = () => {
                 <SubTitle>Preencha os campos abaixo.</SubTitle>
             </Container>
             <Container justify="flex-start">
-                <Spacer height={40} />
+                <Spacer height={20} />
                 <Input 
                     placeholder="Nome" 
                     value={passeger.name}
-                    onValueChange={(itemValue, itemIndex) => setPasseger({...passeger, name: itemValue})}
+                    onChangeText={(itemValue) => setPasseger({...passeger, name: itemValue})}
                 />
                 <Spacer height={20} />
                 <Input 
                     placeholder="Curso" 
                     value={passeger.curso}
-                    onValueChange={(itemValue, itemIndex) => setPasseger({...passeger, curso: itemValue})}
+                    onChangeText={(itemValue) => setPasseger({...passeger, curso: itemValue})}
                     
                 />
                 <Spacer height={20} />
                 <Input 
                     placeholder="Telefone"
                     value={passeger.telefone}
-                    onValueChange={(itemValue, itemIndex) => setPasseger({...passeger, telefone: itemValue})}
+                    onChangeText={(itemValue) => setPasseger({...passeger, telefone: itemValue})}
                 />
                 <Spacer height={20} />
             </Container>
