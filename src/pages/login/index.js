@@ -49,6 +49,11 @@ const Login = () => {
     }
 
     const handleLogin = () => {
+        if (auth.currentUser) {
+            navigator.navigate('Home');
+            return;
+        }
+
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;

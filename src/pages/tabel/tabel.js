@@ -1,9 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { signOut } from 'firebase/auth';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, query, onSnapshot, where } from 'firebase/firestore';
 import { auth, db } from '../../../firebase';
 import DateTimePicker from '@react-native-community/datetimepicker';
 /* Usar a placa salva no banco*/
@@ -11,14 +11,24 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 const HomeScreen = () => {
     const navigation = useNavigation();
 
-
     const [travel, setTravel] = React.useState({
         driverId: auth.currentUser.uid,
         datetime: new Date(),
         destination: '',
         origin: '',
         passengers: [],
+        plate: '',
     })
+
+    const [test, setTest] = React.useState('aaa')
+
+    const [cars, setCars] = useState([{
+        model: '',
+        color: '',
+        plate: '',
+        marc:  '',
+        seats: '',
+    }])
 
     const [showDate, setShowDate] = React.useState(false);
     const [showTime, setShowTime] = React.useState(false);
@@ -45,7 +55,16 @@ const HomeScreen = () => {
     }
 
     useEffect(() => {
-        carPlate = auth.currentCars.plate;
+        // carPlate = auth.currentCars.plate;
+        const q = query(collection(db, 'travels'), where('driver', '==', auth.currentUser.uid));
+        const unsubscribe = onSnapshot(collection(db, 'cars'), (querySnapshot) => {
+            const cars = [];
+            querySnapshot.forEach((doc) => {
+                cars.push({ ...doc.data(), id: doc.id });
+            });
+            setCars(cars);
+        });
+        return () => unsubscribe();
     },[]);
 
 
@@ -101,27 +120,15 @@ const HomeScreen = () => {
                 />
                 
                 
-            </View>
-            {/*
-                <Picker
-                selectedValue={travel.carPlate}
-                onValueChange={(itemValue, itemIndex) => setTravel({...travel, carPlate: itemValue})
-                }>
-                    {
-                        cars.map(car => (
-                            <Picker.Item label={car.plate} value={car.plate} key={car.plate}/>
-                        ))
-                    }
-            </Picker>
-            */}
+            </View> 
             <Picker
-                selectedValue={travel.carPlate}
-                onValueChange={(itemValue, itemIndex) => setTravel({...travel, carPlate: itemValue})
-            }>
-                <Picker.Item label="Placa" value="Placa" />
-                <Picker.Item label="Placa" value="Placa" />
-                <Picker.Item label="Placa" value="Placa" />
-                <Picker.Item label="Placa" value="Placa" />
+                style = {{width: 200, height: 50}}
+                selectedValue={cars[0].plate}
+                onValueChange={(itemValue, itemIndex) => setTravel({...travel, car: itemValue})}
+            >
+                {cars.map((car) => (
+                    <Picker.Item label={car.plate} value={car.plate} key={car.plate} />
+                ))}
             </Picker>
 
             <TouchableOpacity
