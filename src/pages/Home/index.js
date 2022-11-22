@@ -1,5 +1,5 @@
 import React from "react";
-import { View,Text, Button,StyleSheet, TouchableOpacity, Image} from "react-native";
+import { View,Text, Button,StyleSheet, TouchableOpacity, Image,TextInput} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import logo from "../../../assets/logo.png";
@@ -10,6 +10,12 @@ const Home = () =>{
     return (
         <View style={styles.container}>
             <Image style={styles.image} source={logo} />
+            <TouchableOpacity style={styles.input}>
+                <TextInput 
+                    placeholder="Digite um endereço:"
+                    style={styles.inputText}
+                />
+            </TouchableOpacity>
             <Text style={styles.text}>Home</Text>
             <TouchableOpacity style={styles.button}>
                 <Text 
@@ -78,7 +84,21 @@ const styles = StyleSheet.create({
         color: '#000',
         fontSize: 22,
         fontWeight: 'bold',
-    }
+    },
+    input: {
+        width: 200,
+        height: 40,
+        padding: 11,
+        borderWidth: 1,
+        borderColor: '#49efb5',
+        borderRadius: 5,
+        marginBottom: 9,
+
+    },
+    inputText: {
+        fontSize: 16,
+        color: '#000',
+    },
 });
 
 export default Home;

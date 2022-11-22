@@ -60,9 +60,12 @@ const HomeScreen = () => {
         const unsubscribe = onSnapshot(collection(db, 'cars'), (querySnapshot) => {
             const cars = [];
             querySnapshot.forEach((doc) => {
+
                 cars.push({ ...doc.data(), id: doc.id });
+
             });
             setCars(cars);
+
         });
         return () => unsubscribe();
     },[]);
@@ -127,7 +130,7 @@ const HomeScreen = () => {
                 onValueChange={(itemValue, itemIndex) => setTravel({...travel, car: itemValue})}
             >
                 {cars.map((car) => (
-                    <Picker.Item label={car.plate} value={car.plate} key={car.plate} />
+                    <Picker.Item label={car.plate} value={car.plate} key={car.plate}/>
                 ))}
             </Picker>
 

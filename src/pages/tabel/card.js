@@ -4,6 +4,7 @@ import { db } from '../../../firebase';
 import { collection, onSnapshot, query } from "firebase/firestore";
 
 const Card = () =>{
+    const navigation = useNavigation();
     const [table, setTable] = useState([]); 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -51,7 +52,10 @@ const Card = () =>{
                     )}
                     keyExtractor={item => item.id}
                 />
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity 
+                style={styles.button}
+                onPress={() => navigation.navigate('Home')}      
+            >
                 <Text style={styles.iconButton}>+</Text>
             </TouchableOpacity>
         </View>

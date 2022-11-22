@@ -32,7 +32,7 @@ const Passenger = () => {
         })
         .then(() => {
             console.log("Document successfully written!");
-            navigator.navigate('Home');
+            navigator.navigate('Card');
         })
         .catch((error) => {
             console.error("Error writing document: ", error);
