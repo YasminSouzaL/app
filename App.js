@@ -6,10 +6,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Login from './src/pages/login/index';
 import Car from './src/pages/Steps/car';
 import Payment from './src/pages/Steps/payment';
-import Type from './src/pages/Steps/type';
 import Home from './src/pages/Home';
 import Tabel from './src/pages/tabel/tabel';
 import Card from './src/pages/tabel/card';
+import Ride from './src/pages/ride/ride';
 /* 
   Login
   - Home
@@ -33,6 +33,7 @@ export default function App() {
         <Stack.Screen name="Car" component={Car} />
         <Stack.Screen name="Tabel" component={Tabel} />
         <Stack.Screen name="Card" component={Card} />
+        <Stack.Screen name="Ride" component={Ride} />
       </Stack.Navigator>
     </NavigationContainer>
   );

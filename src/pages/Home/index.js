@@ -46,7 +46,15 @@ const Home = () =>{
                     style={styles.buttonText}
                     onPress={() => navigator.navigate('Tabel')}
                 >
-                    Registro do Motorista!
+                    Cadastre um viajem!
+                </Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button}>
+                <Text 
+                    style={styles.buttonText}
+                    onPress={() => navigator.navigate('Ride')}
+                >
+                    Passageiro que querem carona!
                 </Text>
             </TouchableOpacity>
         </View>
