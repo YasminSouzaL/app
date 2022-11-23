@@ -40,7 +40,7 @@ const Home = () =>{
                     style={styles.buttonText}
                     onPress={() => navigator.navigate('Tabel')}
                 >
-                    Cadastre um viajem!
+                    Cadastre uma viajem!
                 </Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}>

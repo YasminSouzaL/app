@@ -11,7 +11,6 @@ import { setDestination, setOrigin } from "../../slices/navSlice";
 
 const Ride = () => {
     const dispatch = useDispatch();
-    
     return (
         <SafeAreaView style={tw`bg-white h-full`}>
             <View style={tw`p-5`}>
@@ -37,7 +36,7 @@ const Ride = () => {
                     }}
                     onPress={(data, details = null) => {
                         dispatch(
-                            setOrigin({
+                            setOrigin({                                  
                                 location: details.geometry.location,
                                 description: data.description,
                         
@@ -57,8 +56,9 @@ const Ride = () => {
                     nearbyPlacesAPI="GooglePlacesSearch"
                     debounce={400}
                 />
-                <NavOptions />
-                <NavFavourites />
+                  <NavOptions />
+                  <NavFavourites />
+
             </View>
         </SafeAreaView> 
     );

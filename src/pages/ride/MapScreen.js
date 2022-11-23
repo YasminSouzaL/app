@@ -1,15 +1,15 @@
 import React from 'react';
 import { StyleSheet,TouchableOpacity, View} from 'react-native';
 import tw from "tailwind-react-native-classnames";
-import Map from '../components/Map';
-import NavigateCard from '../components/NavigateCard';
-import RideOptionsCard from '../components/RideOptionsCard';
-import { createStackNavigator } from '@react-navigation/stack';
+import Map from '../../components/Map';
+import NavigateCard from '../../components/NavigateCard';
+import RideOptionsCard from '../../components/RideOptionsCard';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { Icon } from '@rneui/base';
 import { useNavigation } from '@react-navigation/native';
 
 const MapScreen = () => {
-    const Stack = createStackNavigator();
+    const Stack = createNativeStackNavigator();
     const navigation = useNavigation();
 
     return (
