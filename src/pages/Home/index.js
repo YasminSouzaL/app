@@ -10,12 +10,6 @@ const Home = () =>{
     return (
         <View style={styles.container}>
             <Image style={styles.image} source={logo} />
-            <TouchableOpacity style={styles.input}>
-                <TextInput 
-                    placeholder="Digite um endereço:"
-                    style={styles.inputText}
-                />
-            </TouchableOpacity>
             <Text style={styles.text}>Home</Text>
             <TouchableOpacity style={styles.button}>
                 <Text 

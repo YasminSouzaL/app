@@ -13,7 +13,7 @@ const Ride = () => {
     const dispatch = useDispatch();
     
     return (
-        <safeAreaView style={tw`bg-white h-full`}>
+        <SafeAreaView style={tw`bg-white h-full`}>
             <View style={tw`p-5`}>
                 <Image
                     style={{
@@ -60,7 +60,7 @@ const Ride = () => {
                 <NavOptions />
                 <NavFavourites />
             </View>
-        </safeAreaView> 
+        </SafeAreaView> 
     );
 };
 const styles = StyleSheet.create({
