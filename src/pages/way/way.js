@@ -2,6 +2,8 @@ import React from "react";
 import { View, Text, StyleSheet, Button, TextInput, TouchableOpacity,Image} from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import tw from "tailwind-react-native-classnames";
+import logo from "../../../assets/logo.png";
+
 /* 
     Fazer o passageiro fala para onde quer ir
     e depois filtrar os motoristas que vão para o mesmo lugar
@@ -13,41 +15,31 @@ const Way = () =>{
     }
     return(
         <View style={styles.container}>
-                <Image
-                    style={{
-                        width: 200,
-                        height: 100,
-                        resizeMode: 'contain',
-                    }}
-                    source={{
-                        uri: "https://profomar.files.wordpress.com/2012/06/if.jpg",
-                    }}
-                />
+                <Image style={styles.image} source={logo} />
                 <Text style={styles.text}>Para onde você quer ir?</Text>
-
                 <View style={styles.inputContainer}>
                     <TextInput 
-                        placeholder="Para onde?"
                         style={styles.input}
+                        
                     />
-                </View>
-                <TouchableOpacity style={styles.button}>
-                    <Button 
-                        style={styles.buttonText} 
-                        title="Procurar" 
-                        onPress={() => navigation.navigate('Card')} 
-                    />
-                </TouchableOpacity>
+                </View>    
                 <TouchableOpacity style={styles.button}>
                     <Text 
-                        
+                        style={styles.buttonText}
+                        onPress={() => navigation.navigate('Card')}
+                    >
+                        Procurar
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button}>
+                    <Text  
                         style={styles.buttonText}
                         onPress={() => navigation.navigate('Home')} 
                     >
                         Home
                     </Text>
                 </TouchableOpacity>
-                <Button title="Voltar" onPress={() => navigation.goBack()} />
+                
         </View>
     );
 }
@@ -63,12 +55,14 @@ const styles = StyleSheet.create({
         borderWidth: 1,
     },
     inputContainer:{
-        height: 55,
-        margin: 33,
-        borderWidth: 2
+        height: 80,
+        width:  250,
+        margin: 5,
     },
-    text:{
-        fontSize: 22,
+    text: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        paddingBottom: 20,
     },
     button: {
         backgroundColor: '#49efb5',
@@ -81,6 +75,11 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 16,
         fontWeight: 'bold',
+    },
+    image: {
+        width: 250,
+        height: 100,
+        marginBottom: 100,
     },
 });
 export default Way;
