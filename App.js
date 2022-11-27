@@ -12,6 +12,7 @@ import Tabel from './src/pages/tabel/tabel';
 import Card from './src/pages/tabel/card';
 import Ride from './src/pages/ride/ride';
 import MapScreen from './src/pages/ride/MapScreen';
+import Way from './src/pages/way/way';
 /* 
   Login
   - Home
@@ -38,6 +39,7 @@ export default function App() {
           <Stack.Screen name="Card" component={Card} />
           <Stack.Screen name="Ride" component={Ride} />
           <Stack.Screen name="MapScreen" component={MapScreen} />
+          <Stack.Screen name="Way" component={Way} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>  

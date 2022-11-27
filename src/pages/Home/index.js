@@ -43,10 +43,20 @@ const Home = () =>{
                     Cadastre uma viajem!
                 </Text>
             </TouchableOpacity>
+            {/* 
+                <TouchableOpacity style={styles.button}>
+                    <Text 
+                        style={styles.buttonText}
+                        onPress={() => navigator.navigate('Ride')}
+                    >
+                        Passageiro que querem carona!
+                    </Text>
+                </TouchableOpacity>
+            */}
             <TouchableOpacity style={styles.button}>
                 <Text 
                     style={styles.buttonText}
-                    onPress={() => navigator.navigate('Ride')}
+                    onPress={() => navigator.navigate('Way')}
                 >
                     Passageiro que querem carona!
                 </Text>
