@@ -1,18 +1,22 @@
-import React from "react";
+import React,{useState} from "react";
 import { View, Text, StyleSheet, Button, TextInput, TouchableOpacity,Image} from "react-native";
-import { useNavigation } from '@react-navigation/native';
 import tw from "tailwind-react-native-classnames";
 import logo from "../../../assets/logo.png";
+import { useNavigation } from "@react-navigation/native";
 
 /* 
     Fazer o passageiro fala para onde quer ir
     e depois filtrar os motoristas que vão para o mesmo lugar
 */
 const Way = () =>{
-    const navigation = useNavigation();
-    const Destion = () =>{
-        //navigation.navigate('Card');
-    }
+    const navigator = useNavigation();
+
+    const [way, setWay] = useState({
+        destination: '',
+    })
+    const [showDate, setShowDate] = React.useState(false);
+
+
     return(
         <View style={styles.container}>
                 <Image style={styles.image} source={logo} />
@@ -20,13 +24,15 @@ const Way = () =>{
                 <View style={styles.inputContainer}>
                     <TextInput 
                         style={styles.input}
-                        
+                        placeholder="Digite o destino"
+                        value={way.destination}
+                        onChangeText={text => setWay({...way, destination: text})}
                     />
                 </View>    
                 <TouchableOpacity style={styles.button}>
                     <Text 
                         style={styles.buttonText}
-                        onPress={() => navigation.navigate('Card')}
+                        onPress={() => navigator.navigate('Tabel')}
                     >
                         Procurar
                     </Text>
@@ -34,7 +40,7 @@ const Way = () =>{
                 <TouchableOpacity style={styles.button}>
                     <Text  
                         style={styles.buttonText}
-                        onPress={() => navigation.navigate('Home')} 
+                        onPress={() => navigator.navigate('Home')}
                     >
                         Home
                     </Text>
@@ -55,9 +61,10 @@ const styles = StyleSheet.create({
         borderWidth: 1,
     },
     inputContainer:{
-        height: 80,
-        width:  250,
-        margin: 5,
+        height: 88,
+        width:  255,
+        margin: 6,
+        
     },
     text: {
         fontSize: 20,
