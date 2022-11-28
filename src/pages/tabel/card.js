@@ -2,7 +2,8 @@ import React,{useState,useEffect} from "react";
 import { View,Text,StyleSheet,FlatList, TouchableOpacity } from "react-native";
 import { db } from '../../../firebase';
 import { collection, onSnapshot, query } from "firebase/firestore";
-
+import { useNavigation } from '@react-navigation/native';
+/*Construir o filtro do card com o Way */
 const Card = () =>{
     const navigation = useNavigation();
     const [table, setTable] = useState([]); 
@@ -24,7 +25,15 @@ const Card = () =>{
         });
         return () => unsubscribe();
     }, []); 
-        
+    const renderItem = ({ item }) => (
+        <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('Way')}>
+            <Text style={styles.title}>{item.destination}</Text>
+            <Text style={styles.title}>{item.origin}</Text>
+            <Text style={styles.title}>{item.date}</Text>
+            <Text style={styles.title}>{item.hour}</Text>
+            <Text style={styles.title}>{item.price}</Text>
+        </TouchableOpacity>
+    );
     return (
         <View style={styles.container}> 
             <Text>CardScreen</Text>

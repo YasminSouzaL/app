@@ -61,6 +61,14 @@ const Home = () =>{
                     Passageiro que querem carona!
                 </Text>
             </TouchableOpacity>
+            <TouchableOpacity style={styles.button}>
+                <Text 
+                    style={styles.buttonText}
+                    onPress={() => navigator.navigate('Card')}
+                >
+                    viajems!
+                </Text>
+            </TouchableOpacity>
         </View>
     )
 }

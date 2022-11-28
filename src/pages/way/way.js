@@ -14,6 +14,11 @@ const Way = () =>{
     const [way, setWay] = useState({
         destination: '',
     })
+
+    const handleWay = () =>{
+        navigator.navigate('Card');
+    }
+    
     const [showDate, setShowDate] = React.useState(false);
 
 
@@ -29,6 +34,14 @@ const Way = () =>{
                         onChangeText={text => setWay({...way, destination: text})}
                     />
                 </View>    
+                <TouchableOpacity style={styles.button}>
+                    <Text 
+                        style={styles.buttonText}
+                        onPress={() => navigator.navigate('Card')}
+                    >
+                        Procurar com Card
+                    </Text>
+                </TouchableOpacity>
                 <TouchableOpacity style={styles.button}>
                     <Text 
                         style={styles.buttonText}
