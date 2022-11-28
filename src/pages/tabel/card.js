@@ -2,18 +2,20 @@ import React,{useState,useEffect} from "react";
 import { View,Text,StyleSheet,FlatList, TouchableOpacity } from "react-native";
 import { db } from '../../../firebase';
 import { collection, onSnapshot, query } from "firebase/firestore";
-import { useNavigation, useRoute} from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 /*Construir o filtro do card com o Way */
 
 const Card = () => {
     const navigation = useNavigation();
     const route = useRoute();
+
     const [table, setTable] = useState([]); 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [wayFilter, setWayFilter] = useState(table.filter((item) => item.destination === destination));
     const { destination } = route.params;
     
+    // const [wayFilter, setWayFilter] = useState(table.filter((item) => item.destination === destination));
+    const [wayFilter, setWayFilter] = useState([]);
     
     useEffect(() => {  
         const q = query(collection(db, "travels"));
@@ -31,6 +33,10 @@ const Card = () => {
         return () => unsubscribe();
     }, []); 
 
+    useEffect(() => {
+        setWayFilter(table.filter((item) => item.destination === destination));
+    }, []);
+
     /* const handleWayFilter = async () =>{
         const wayFilter = await table.filter((item) => item.destination === destination);
         table.filter((item) => item.destination === destination)
@@ -40,7 +46,7 @@ const Card = () => {
         <View style={styles.container}> 
             <Text>CardScreen</Text>
                 <FlatList                 
-                    data={table}
+                    data={wayFilter}
                     renderItem={({item}) => (
                         <TouchableOpacity style={styles.card}>
                             <Text>-------------------</Text>
