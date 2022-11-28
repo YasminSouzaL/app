@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Button, TextInput, TouchableOpacity,Image} from
 import tw from "tailwind-react-native-classnames";
 import logo from "../../../assets/logo.png";
 import { useNavigation } from "@react-navigation/native";
+import { collection, query, where, getDocs } from "firebase/firestore";
 
 /* 
     Fazer o passageiro fala para onde quer ir
@@ -15,13 +16,14 @@ const Way = () =>{
         destination: '',
     })
     
-    const handleWay = () =>{
-        way.destination = way.destination.toLowerCase();
-        navigator.navigate('Card');
-    }
-    
-    const [showDate, setShowDate] = React.useState(false);
+    const handleWay = async () =>{
+        // way.destination = way.destination.toLowerCase();
+        const cards = [];
 
+        navigator.navigate('Card', { destination: way.destination });
+    }
+
+    const [showDate, setShowDate] = React.useState(false);
 
     return(
         <View style={styles.container}>
