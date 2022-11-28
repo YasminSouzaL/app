@@ -10,9 +10,9 @@ const Card = ( { route } ) => {
     const [table, setTable] = useState([]); 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [wayFilter, setWayFilter] = useState([]);
+    const [wayFilter, setWayFilter] = useState(table.filter((item) => item.destination === destination));
     const { destination } = route.params;
-    setWayFilter(table.filter((item) => item.destination === destination));
+    
     
     useEffect(() => {  
         const q = query(collection(db, "travels"));
