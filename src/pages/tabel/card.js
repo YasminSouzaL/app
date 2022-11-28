@@ -4,14 +4,16 @@ import { db } from '../../../firebase';
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { useNavigation } from '@react-navigation/native';
 /*Construir o filtro do card com o Way */
-const Card = () =>{
+
+const Card = ( { route } ) => {
     const navigation = useNavigation();
     const [table, setTable] = useState([]); 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [wayFilter, setWayFilter] = useState([]);
-    const [wayFilter2, setWayFilter2] = useState([]);
-
+    const { destination } = route.params;
+    setWayFilter(table.filter((item) => item.destination === destination));
+    
     useEffect(() => {  
         const q = query(collection(db, "travels"));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -28,13 +30,11 @@ const Card = () =>{
         return () => unsubscribe();
     }, []); 
 
-    const handleWayFilter = () =>{
-        const wayFilter = table.filter((item) => item.destination === 'IF');
-        setWayFilter(wayFilter);
-        console.log(wayFilter);
-    }
+    /* const handleWayFilter = async () =>{
+        const wayFilter = await table.filter((item) => item.destination === destination);
+        table.filter((item) => item.destination === destination)
+    } */
 
-    
     return (
         <View style={styles.container}> 
             <Text>CardScreen</Text>
