@@ -2,11 +2,12 @@ import React,{useState,useEffect} from "react";
 import { View,Text,StyleSheet,FlatList, TouchableOpacity } from "react-native";
 import { db } from '../../../firebase';
 import { collection, onSnapshot, query } from "firebase/firestore";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute} from '@react-navigation/native';
 /*Construir o filtro do card com o Way */
 
-const Card = ( { route } ) => {
+const Card = () => {
     const navigation = useNavigation();
+    const route = useRoute();
     const [table, setTable] = useState([]); 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
