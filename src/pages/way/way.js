@@ -14,8 +14,9 @@ const Way = () =>{
     const [way, setWay] = useState({
         destination: '',
     })
-
+    
     const handleWay = () =>{
+        way.destination = way.destination.toLowerCase();
         navigator.navigate('Card');
     }
     
@@ -37,7 +38,9 @@ const Way = () =>{
                 <TouchableOpacity style={styles.button}>
                     <Text 
                         style={styles.buttonText}
-                        onPress={() => navigator.navigate('Card')}
+                        onPress={() => handleWay(
+                            way.destination
+                        )}
                     >
                         Procurar com Card
                     </Text>
@@ -45,7 +48,7 @@ const Way = () =>{
                 <TouchableOpacity style={styles.button}>
                     <Text 
                         style={styles.buttonText}
-                        onPress={() => navigator.navigate('Tabel')}
+                        onPress={() => navigator.navigate('Card')}
                     >
                         Procurar
                     </Text>

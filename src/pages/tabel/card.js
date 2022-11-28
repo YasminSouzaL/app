@@ -9,6 +9,8 @@ const Card = () =>{
     const [table, setTable] = useState([]); 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [wayFilter, setWayFilter] = useState([]);
+    const [wayFilter2, setWayFilter2] = useState([]);
 
     useEffect(() => {  
         const q = query(collection(db, "travels"));
@@ -25,19 +27,18 @@ const Card = () =>{
         });
         return () => unsubscribe();
     }, []); 
-    const renderItem = ({ item }) => (
-        <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('Way')}>
-            <Text style={styles.title}>{item.destination}</Text>
-            <Text style={styles.title}>{item.origin}</Text>
-            <Text style={styles.title}>{item.date}</Text>
-            <Text style={styles.title}>{item.hour}</Text>
-            <Text style={styles.title}>{item.price}</Text>
-        </TouchableOpacity>
-    );
+
+    const handleWayFilter = () =>{
+        const wayFilter = table.filter((item) => item.destination === 'IF');
+        setWayFilter(wayFilter);
+        console.log(wayFilter);
+    }
+
+    
     return (
         <View style={styles.container}> 
             <Text>CardScreen</Text>
-                <FlatList 
+                <FlatList                 
                     data={table}
                     renderItem={({item}) => (
                         <TouchableOpacity style={styles.card}>
