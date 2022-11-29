@@ -12,7 +12,7 @@ import { collection, addDoc } from 'firebase/firestore';
 const driver = () => {    
     const [visible, setvisible] = useState(true); 
     const [name, setName] = useState(''); 
-    const [curso, setCurso] = useState('');
+    const [rg, setRg] = useState('');
 
     const navigator = useNavigation();   
 
